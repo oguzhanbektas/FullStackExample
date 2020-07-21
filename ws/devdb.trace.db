@@ -1,0 +1,28 @@
+2020-07-21 22:58:44 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USER 
+
+DELETE FROM[*] USER WHERE ID =7"; SQL statement:
+SELECT * FROM USER 
+
+DELETE FROM USER WHERE ID =7 [42000-200]
+2020-07-21 22:58:51 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USER 
+
+DELETE FROM[*] USER WHERE ID ='7'"; SQL statement:
+SELECT * FROM USER 
+
+DELETE FROM USER WHERE ID ='7' [42000-200]
+2020-07-21 22:58:57 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USER 
+
+DELETE FROM[*] USER WHERE ID ="; SQL statement:
+SELECT * FROM USER 
+
+DELETE FROM USER WHERE ID = [42000-200]
+2020-07-21 22:58:58 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USER 
+
+DELETE FROM[*] USER WHERE ID ="; SQL statement:
+SELECT * FROM USER 
+
+DELETE FROM USER WHERE ID = [42000-200]
