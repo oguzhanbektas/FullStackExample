@@ -1,6 +1,6 @@
 import React from "react";
 import { signup } from "../api/apiCalls.js";
-import  Input from "../components/Input";
+import Input from "../components/Input";
 class UserSignupPage extends React.Component {
   state = {
     username: null,
@@ -44,24 +44,33 @@ class UserSignupPage extends React.Component {
 
   render() {
     const { pendingApiCall, errors } = this.state;
-    const { username, displayName } = errors;
+    const { username, displayName ,password} = errors;
 
     return (
       <div className="container">
         <form>
           <h1 className="text-center"> Signup Page </h1>
-          <Input name = "username" label = "Username" error= {username} onChange = {this.onChange} />
-          <Input name = "displayname" label = "Displayname" error= {displayName} onChange = {this.onChange} />
-         
-          <div className="form-group">
-            <label> Password </label>
-            <input
-              type="password"
-              name="password"
-              onChange={this.onChange}
-              className="form-control"
-            />
-          </div>
+          <Input
+            name="username"
+            label="Username"
+            error={username}
+            onChange={this.onChange}
+          />
+          <Input
+            name="displayname"
+            label="Displayname"
+            error={displayName}
+            onChange={this.onChange}
+          />
+          <Input
+            name="password"
+            label="Password"
+            error={password}
+            onChange={this.onChange}
+            type="password"
+          />
+
+          
           <div className="form-group">
             <label> Password Repeat</label>
             <input
