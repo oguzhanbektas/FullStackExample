@@ -1,5 +1,5 @@
 import React from "react";
-import { signup } from "../api/apiCalls.js";
+import { signup, changeLanguage } from "../api/apiCalls.js";
 import Input from "../components/Input";
 import { withTranslation } from "react-i18next";
 class UserSignupPage extends React.Component {
@@ -53,6 +53,12 @@ class UserSignupPage extends React.Component {
     this.setState({ pendingApiCall: false });
   };
 
+  onChangeLanguage = (language) => {
+    const { i18n } = this.props;
+    i18n.changeLanguage(language);
+    changeLanguage(language);
+  };
+
   render() {
     const { t } = this.props;
     const { pendingApiCall, errors } = this.state;
@@ -63,26 +69,26 @@ class UserSignupPage extends React.Component {
           <h1 className="text-center"> {t("Signup")} </h1>
           <Input
             name="username"
-            label={t('Username')}
+            label={t("Username")}
             error={username}
             onChange={this.onChange}
           />
           <Input
             name="displayName"
-            label={t('Displayname')}
+            label={t("Displayname")}
             error={displayName}
             onChange={this.onChange}
           />
           <Input
             name="password"
-            label={t('Password')}
+            label={t("Password")}
             error={password}
             onChange={this.onChange}
             type="password"
           />
           <Input
             name="passwordRepeat"
-            label={t('Password Repeat')}
+            label={t("Password Repeat")}
             error={passwordRepeat}
             onChange={this.onChange}
             type="password"
@@ -99,6 +105,21 @@ class UserSignupPage extends React.Component {
               ) : null}
               {t("Signup")}
             </button>
+          </div>
+          <div>
+            <img
+              src="https://www.countryflags.io/tr/flat/24.png"
+              alt="Turkish Flag"
+              onClick={() => this.onChangeLanguage("tr")}
+              style={{ cursor: "pointer" }}
+            />
+
+            <img
+              src="https://www.countryflags.io/us/flat/24.png"
+              alt="American Flag"
+              onClick={() => this.onChangeLanguage("us")}
+              style={{ cursor: "pointer" }}
+            />
           </div>
         </form>
       </div>
