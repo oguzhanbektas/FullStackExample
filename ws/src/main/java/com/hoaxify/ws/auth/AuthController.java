@@ -38,40 +38,13 @@ public class AuthController {
 
     @PostMapping("/api/1.0/auth")
     @JsonView(Views.Base.class)
-    ResponseEntity<?> handleAuthentication(@RequestHeader(name = "Authorization", required = false) String authorization) {
-        if (authorization == null) {
-            ApiError error = new ApiError(401, "Unauthorized request", "api/1.0/auth");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
-        }
-
+    ResponseEntity<?> handleAuthentication(@RequestHeader(name = "Authorization") String authorization) {
         String base64encoded = authorization.split("Basic ")[1];
         String decode = new String(Base64.getDecoder().decode(base64encoded));
         String[] parts = decode.split(":");
         String username = parts[0];
-        String password = parts[1];
-
         User inDb = userRepository.findByUsername(username);
-        if (inDb == null) {
-            ApiError error = new ApiError(401, "Unauthorized request", "api/1.0/auth");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
-        }
-
-        String hashedPassword = inDb.getPassword();
-
-        if (!passwordEncoder.matches(password, hashedPassword)) {
-            ApiError error = new ApiError(401, "Unauthorized request", "api/1.0/auth");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
-
-        }
-
-        Map<String, String> responseBody = new HashMap<>();
-        responseBody.put("username", inDb.getUsername());
-        responseBody.put("displayName", inDb.getDisplayName());
-        responseBody.put("img", inDb.getImage());
-
-
-        log.info(" --> : " + responseBody + " sisteme giriş yaptı .." + new Date());
-        return ResponseEntity.ok(responseBody);
+        return ResponseEntity.ok(inDb);
     }
 
 }
