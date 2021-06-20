@@ -1,20 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import './bootstrap-override.scss';
-import App from './App';
-import UserSignupPage from './pages/UserSignupPage';
-import LoginPage from './pages/LoginPage';
-import * as serviceWorker from './serviceWorker';
-import './i18n';
-import LanguageSelector from './components/LanguageSelector';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import "./bootstrap-override.scss";
+import App from "./App";
+import UserSignupPage from "./pages/UserSignupPage";
+import LoginPage from "./pages/LoginPage";
+import * as serviceWorker from "./serviceWorker";
+import "./i18n";
+import LanguageSelector from "./components/LanguageSelector";
+import ApiProgress from "./shrared/ApiProgress";
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginPage />
+    <ApiProgress>
+      <LoginPage />
+    </ApiProgress>
     <LanguageSelector />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
