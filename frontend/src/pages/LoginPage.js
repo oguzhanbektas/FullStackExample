@@ -4,6 +4,7 @@ import { withTranslation } from "react-i18next";
 import { login } from "../api/apiCalls";
 import axios from "axios";
 import ButtonWithProgress from "../components/ButtonWithProgress";
+import withApiProgress from "../shared/ApiProgress";
 
 class LoginPage extends Component {
   state = {
@@ -11,7 +12,6 @@ class LoginPage extends Component {
     password: null,
     error: null,
   };
-
 
   onChange = (event) => {
     const { name, value } = event.target;
@@ -28,11 +28,15 @@ class LoginPage extends Component {
       username,
       password,
     };
+
     this.setState({
       error: null,
     });
+
+    const { push } = this.props.history;
     try {
       await login(creds);
+      push("/");
     } catch (apiError) {
       this.setState({
         error: apiError.response.data.message,
@@ -76,4 +80,6 @@ class LoginPage extends Component {
   }
 }
 
-export default withTranslation()(LoginPage);
+const LoginPageWithTranslation = withTranslation()(LoginPage);
+
+export default withApiProgress(LoginPageWithTranslation, "/api/1.0/auth");
