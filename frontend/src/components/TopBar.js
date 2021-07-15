@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { Authentication } from "../shared/AuthenticationContext";
 
 class TopBar extends Component {
-
+  static contextType = Authentication;
   render() {
-    const { t, username, isLoggedIn, onLogoutSuccess } = this.props;
-
+    const { t } = this.props;
+    const { state, onLogoutSuccess } = this.context;
+    const { isLoggedIn, username } = state;
     let links = (
       <ul className="navbar-nav ml-auto">
         <li>
