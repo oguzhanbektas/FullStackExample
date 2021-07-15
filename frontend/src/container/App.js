@@ -6,12 +6,10 @@ import UserPage from "../pages/UserPage";
 import LanguageSelector from "../components/LanguageSelector";
 import { HashRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import TopBar from "../components/TopBar";
-import { Authentication } from "../shared/AuthenticationContext";
 
 class App extends React.Component {
-  static contextType = Authentication;
   render() {
-    const isLoggedIn = this.context.state.isLoggedIn;
+    const isLoggedIn = false;
     return (
       <div>
         <Router>
